@@ -107,7 +107,7 @@ def discounted_cashflow_model(fcf_next, growth, growth_terminal, discount_rate, 
     return df
 
 
-THAI_TICKER_FILE = 'data/thai_ticker.p'
+THAI_TICKER_FILE = '../data/thai_tickers.p'
 def getAllThaiTickers():
     #load data
     return np.load(THAI_TICKER_FILE)
