@@ -1,0 +1,26 @@
+
+script
+- updateDataAll
+- updateDataThai
+- updateDataUsa
+
+data
+——-fs
+——-——-price
+——-——-econ
+potzy
+——-datareader
+——-——-siamchartdatareader
+——-——-jittadatareader
+——-——-morningstardatareader
+——-——-secdatareader
+——-calculator
+——-stockdata
+
+
+
+
+
+
+
+
