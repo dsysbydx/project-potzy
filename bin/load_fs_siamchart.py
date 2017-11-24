@@ -14,7 +14,10 @@ all_thai_tickers = potzy.metadata.getAllThaiTickers()
 num_round=0
 today = dt.date.today()
 year,month,day=today.year, today.month, today.day
-potzy.helpers.ensure_dir()
+prefix_fs = '../data/siamchart/fs/'+'/'.join([str(year),str(month),str(day)])
+prefix_div = '../data/siamchart/div/'+'/'.join([str(year),str(month),str(day)])
+potzy.helpers.ensure_dir(prefix_fs)
+potzy.helpers.ensure_dir(prefix_div)
 
 while len(tickers_left) > 0 and num_round < 10:
     for ticker in tickers_left:
@@ -42,9 +45,8 @@ while len(tickers_left) > 0 and num_round < 10:
             df_fs=df_fs[cols]
 
             #save result
-            filename='/'.join([str(year),str(month),str(day),ticker])
-            df_fs.to_csv('../data/siamchart/fs/'+filename+'.csv')
-            df_div.to_csv('../data/siamchart/div/'+filename+'.csv')
+            df_fs.to_csv(prefix_fs+ticker+'.csv')
+            df_div.to_csv(prefix_div+ticker+'.csv')
 
             #
             tickers_loaded.add(ticker)
