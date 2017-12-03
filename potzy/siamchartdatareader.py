@@ -1,6 +1,12 @@
-from selenium import webdriver
 import pandas as pd
 import numpy as np
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException, WebDriverException
+from selenium.webdriver.support import expected_conditions as EC
 
 CHROME_DRIVER_LOC='/usr/local/bin/chromedriver'
 SIAMCHART_URL='http://siamchart.com/stock-info/'
@@ -14,7 +20,6 @@ class SiamChartDataReader:
     [TO BE FILLED]
 
     """
-    
     def __init__(self,browser=None):
 
         if browser is None:
@@ -43,8 +48,20 @@ class SiamChartDataReader:
         return url
 
     def getPageSource(self,ticker):
+
+        wait = WebDriverWait(self.browser,10)
         self.browser.get(self.getUrl(ticker))
-        self.browser.find_element_by_xpath("//div[@onclick='displayQoQ();']").click()
+        num_round_find_qoq=0
+        while num_round_find_qoq <= 5:
+            try:
+                # find qoq button
+                qoq_button = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@onclick='displayQoQ();']")))
+                qoq_button.click()
+                break
+            except (TimeoutException, WebDriverException) :
+                num_round_find_qoq+=1
+                print(ticker,": retrying finding qoq button...",num_round_find_qoq,' times')
+                continue
         return self.browser.page_source
 
     def getFinancialData(self,ticker,clean=True,adjust_quarterly=True):
@@ -80,8 +97,9 @@ class SiamChartDataReader:
 
 
     # STATIC FUNCTIONS
-    # the functions below are mainly used to clearn/adjust with the pandas dataframe
+    # the functions below are mainly used to clearn/adjust the pandas dataframe
     # derived from running pd.read_html(..) on page source of siam chart
+
     @staticmethod
     def cleanFinancialData(df):
 
@@ -138,10 +156,13 @@ class SiamChartDataReader:
 
         return df
 
+
     @staticmethod
     def adjustQuarterlyResult(df,ticker):
 
         RETURN_COLUMN='net_profit'
+        EPS_COLUMN = 'EPS'
+
         cols_subtract=['revenue', 'expense', 'gross_profit', 'operating_profit',
                'ebit', 'ebitda', 'net_profit', 'cash_flow_operation',
                'cash_flow_investment', 'cash_flow_financing', 'depreciation',
@@ -149,8 +170,14 @@ class SiamChartDataReader:
         cols_divide=['P/E']
         cols_multiply=['ROA%', 'ROAA%', 'ROE%', 'ROAE%', 'ROCE%']
 
+        all_cols = [EPS_COLUMN]+cols_subtract+cols_divide+cols_multiply
+        for col in all_cols:
+            if col not in df.columns:
+                print('Warning: essential column ',col,' is missing. Assigning NaN.')
+                df[col]=np.NaN
+
         df.sort_index(inplace=True)
-        df['number_of_shares']=df[RETURN_COLUMN]/df['EPS']
+        df['number_of_shares']=df[RETURN_COLUMN]/df[EPS_COLUMN]
         if 'DPS' in df.columns:
             df['dividend']=df['DPS']*df['number_of_shares']
         else:
@@ -162,6 +189,7 @@ class SiamChartDataReader:
         if ticker in ['AOT']:
             first_quarter_month = 12
 
+        #coll
         for col in cols_subtract:
             if col in df.columns:
                 df['tmp'] = df[col].diff()
@@ -188,8 +216,6 @@ class SiamChartDataReader:
                 df[col]=np.nan
 
         return df
-
-
 
 
 ################################################################
