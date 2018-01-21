@@ -1,0 +1,5 @@
+,revenue,net_profit,eps,dps,gross_profit,ebit,ebitda,close_price,expense,cash,account_receivable,total_asset,total_liability,cash_flow_operation,cash_flow_financing,DPS,month,year,EPS,operating_profit,cash_flow_investment,depreciation,dividend,P/E,ROA%,ROAA%,ROE%,ROAE%,ROCE%,number_of_shares,return_old
+2016-12-31,,,,,,,,10.0,,193.04,18.83,8201.39,2463.4,,,0.0,12,2016,,,,,,,,,,,,,
+2017-03-31,144.17,,,,,,,9.75,37.83,282.87,27.85,8292.74,2448.42,112.87,-23.03,0.0,3,2017,,,,,,,,,,,,,
+2017-06-30,144.22,,,,,,,7.65,38.16,96.65,31.28,7393.57,2445.89,-13.11,-173.10999999999999,0.26,6,2017,,,,,,,,,,,,,
+2017-09-30,143.65000000000003,,,,,,,8.05,37.25,95.61,36.53,7396.74,2447.9,126.89999999999999,-127.94999999999999,0.26,9,2017,,,,,,,,,,,,,
