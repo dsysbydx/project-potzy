@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Potzy</title>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap-select.css">
+
+
+</head>
+<body>
+
+         <!-- add option value -->
+         <!-- <form class="form-inline" method="POST" action="{{ url_for('test') }}"> -->
+        <form class="form-inline" method="POST"  action="{{url_for('index')}}"> 
+          <div class="form-group">
+
+              <select name='stock-select' class="selectpicker" data-live-search="true">
+                <option data-tokens="CPALL ซีพี" value='CPALL'>CPALL</option>
+                <option data-tokens="HMPRO โฮมโปร " value='HMPRO'>HMPRO</option>
+                <option data-tokens="BEAUTY บิวตี้" value='BEAUTY'>BEAUTY</option>
+              </select>
+
+              <select name='item-select' class="selectpicker" data-live-search="true">
+                <option data-tokens="revenue รายได้" value='Revenue'>Revenue</option>
+                <option data-tokens="net profit กำไร">Net Profit</option>
+                <option data-tokens="cashflow กระแสเงินสด">Cashflow from Operation</option>
+              </select>
+
+            <button type="submit" class="btn btn-primary">Go</button>
+          </div>
+        </form>
+
+        <p>{{stock}}</p>
+        <p>{{item}}</p>  
+
+
+      <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so th pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/bootstrap-select.js"></script>
+      </body>
+      </html>
