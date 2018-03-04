@@ -1,0 +1,23 @@
+To do
+
+Prep Data
+[DONE]clean price
+- Write price loading script (merge with SET)
+- Add sanity check script on price data (very prone to bug now)
+
+Trade
+- Test basic signal (MA100)
+- Write basic simulation function/class
+- Write job that load price, run through all signals, get score, save the file -> Called DAILY SCRIPT
+- Design trading freq, time 
+
+Analysis
+- Design position updating 
+- WRite position file (read position + past trade = current position)
+- Write analyze trade file
+
+
+Set up job
+- Set up daily report + alert system
+- Set/Run monthly job for financial
+- Set/Run daily pricing job

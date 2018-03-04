@@ -24,6 +24,10 @@ def getRearrangeColumns(df,prefixCols):
     return prefixCols+[x for x in df.columns if x not in prefixCols]
 
 
+def get_all_columns(df,prefix):
+    return [x for x in df.columns if x[:len(prefix)]==prefix]
+
+
 # Valuation related functions
 def forwardPE(eps_latest,growth,pe_terminal,payout_ratio,discount_rate):
     N=len(growth)
@@ -106,8 +110,3 @@ def discounted_cashflow_model(fcf_next, growth, growth_terminal, discount_rate, 
 
     return df
 
-
-THAI_TICKER_FILE = '../data/thai_tickers.p'
-def getAllThaiTickers():
-    #load data
-    return np.load(THAI_TICKER_FILE)

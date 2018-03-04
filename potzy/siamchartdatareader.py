@@ -13,6 +13,7 @@ SIAMCHART_URL='http://siamchart.com/stock-info/'
 SIAMCHART_LOGIN_URL='http://siamchart.com/forum/showthread.php?152'
 SIAMCHART_DIVIDEND_TABLE=1
 SIAMCHART_FINANCIAL_TABLE=3
+SIAMCHART_SPLIT_TABLE=2
 
 class SiamChartDataReader:
     """ data reader for the siam chart site.
@@ -26,6 +27,9 @@ class SiamChartDataReader:
             self.browser=webdriver.Chrome(executable_path =CHROME_DRIVER_LOC)
         else:
             self.browser=browser
+
+    def __del__(self):
+        self.browser.quit()
 
     def getThaiStockMetaData(self):
         return None
@@ -47,21 +51,22 @@ class SiamChartDataReader:
         url=self.urlencodeSiamChart(url)
         return url
 
-    def getPageSource(self,ticker):
+    def getPageSource(self,ticker,click_qoq=True):
 
         wait = WebDriverWait(self.browser,10)
         self.browser.get(self.getUrl(ticker))
-        num_round_find_qoq=0
-        while num_round_find_qoq <= 5:
-            try:
-                # find qoq button
-                qoq_button = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@onclick='displayQoQ();']")))
-                qoq_button.click()
-                break
-            except (TimeoutException, WebDriverException) :
-                num_round_find_qoq+=1
-                print(ticker,": retrying finding qoq button...",num_round_find_qoq,' times')
-                continue
+        if click_qoq:
+            num_round_find_qoq=0
+            while num_round_find_qoq <= 5:
+                try:
+                    # find qoq button
+                    qoq_button = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@onclick='displayQoQ();']")))
+                    qoq_button.click()
+                    break
+                except (TimeoutException, WebDriverException) :
+                    num_round_find_qoq+=1
+                    print(ticker,": retrying finding qoq button...",num_round_find_qoq,' times')
+                    continue
         return self.browser.page_source
 
     def getFinancialData(self,ticker,clean=True,adjust_quarterly=True):
@@ -95,6 +100,35 @@ class SiamChartDataReader:
 
         return dfDiv
 
+    def getSplittingData(self,ticker):
+        """Get splitting data table"""
+
+        dfS=pd.read_html(self.getPageSource(ticker,click_qoq=False))
+        dfS=dfS[SIAMCHART_SPLIT_TABLE]
+
+        #format table
+        dfS.columns=['date','par']
+        dfS=dfS[2:]
+
+        ## add formatting
+
+
+
+        return dfS
+
+    def getAllSplittingData(self,tickers):
+
+        df=pd.DataFrame()
+        
+        for ticker in tickers:
+            dfS=self.getSplittingData(ticker)
+            if len(dfS) > 0:
+                dfS.sort_values('date',ascending=False)
+                dfS['par_prev']=dfS['par'].shift(1)
+                dfS['ticker']=ticker
+                df=df.append(dfS)
+        df.dropna(subset=['par_prev'],inplace=True)
+        return df
 
     # STATIC FUNCTIONS
     # the functions below are mainly used to clearn/adjust the pandas dataframe
@@ -223,3 +257,6 @@ class SiamChartDataReader:
 ##  END OF CLASS DEFINTION
 ################################################################
 ################################################################
+
+def get_url_stock_info(ticker):
+    return SIAMCHART_URL+ticker.upper().replace('&','_26')+'/'
