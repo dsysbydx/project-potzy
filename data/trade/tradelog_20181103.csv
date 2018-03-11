@@ -1,0 +1,34 @@
+Date,Country,Ticker,Action,No.,Price,Commosion,Value,Comment
+2/21/17,us,FB,B,7,134,0,938,Reasonable valuation at the upperbound. Want to initial the positoin while thinking about value-based dca
+4/5/17,us,GOOGL,B,6,851.89,0,5111.34,Reasonable valuation at the upperbound. Want to initial the positoin while thinking about value-based dca
+4/6/17,us,FB,B,30,142,0,4260,Reasonable valuation at the upperbound. Want to initial the positoin while thinking about value-based dca
+5/9/17,us,NVDA,B,50,104.45,0,5222.5,"Right before earning, want to get exposure before the earning (risky!!)"
+5/15/17,us,PCLN,B,3,1819.99,0,5459.97,Initial position for long-term. Realize the risk of overpaying
+5/16/17,us,MCO,B,48,115.29,0,5533.92,End-of-year forward PE of 20 seems reasonable. Concern about number of bond issuance when rate is hiked.
+5/16/17,us,V,B,55,93,0,5115,Reasonable valuation at the upperbound. Want to initial the positoin while thinking about value-based dca
+6/29/17,us,FB,B,8,151.39,0,1211.12,dca for June
+6/30/17,us,V,B,13,94.5,0,1228.5,dca for June
+6/30/17,us,SBUX,B,19,58.26,0,1106.94,dca for June
+6/30/17,us,DIS,B,7,105.76,0,740.32,dca for June
+6/30/17,us,MA,B,6,121.75,0,730.5,dca for June
+6/30/17,us,MCO,B,6,121.46,0,728.76,dca for June
+6/30/17,us,GOOGL,B,1,940.72,0,940.72,dca for June
+6/30/17,us,FDS,B,3,169.65,0,508.95,dca for June
+7/11/17,th,AOT,B,300,49,24.69,"14,675.31",dca for June (late execution)
+7/11/17,th,CPALL,B,600,60.5,60.98,"36,360.98",dca for June (late execution)
+7/11/17,th,HMPRO,B,"3,400",9.6,54.83,"32,694.83",dca for June (late execution)
+7/11/17,th,INTUCH,B,600,57.5,57.96,"34,557.96",dca for June (late execution)
+7/11/17,th,MC,B,"2,200",17.7,65.42,"39,005.42",dca for June (late execution)
+7/11/17,th,MINT,B,"1,000",40.75,68.46,"40,818.46",dca for June (late execution)
+7/11/17,th,SCC,B,100,498,83.66,"49,883.66",dca for June (late execution)
+7/11/17,th,SVH,B,100,349,58.63,"34,958.63",dca for June (late execution)
+7/18/17,th,THIP,B,300,390,183.69,117000,"after-splitting, bet on liquidty premium"
+7/20/17,us,MCO,B,3,127.55,0,382.65,dca for july
+7/20/17,us,SBUX,B,12,58.1,0,697.2,dca for july
+7/20/17,us,FDS,B,5,165.67,0,828.35,dca for july
+7/20/17,us,DIS,B,8,107.58,0,860.64,dca for july
+7/20/17,us,MA,B,9,128.43,0,1155.87,dca for july
+7/20/17,us,GOOGL,B,1,989,0,989,dca for july
+7/20/17,us,FB,B,7,163.78,0,1146.46,dca for july
+7/20/17,us,V,B,11,98.69,0,1085.59,dca for july
+7/27/17,us,SBUX,B,77,58.06,0,4470.62,impulsive buy before earning  (down -9% after earning T T)
