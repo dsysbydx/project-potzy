@@ -1,23 +1,31 @@
 To do
 
 Prep Data
-[DONE]clean price
-- Write price loading script (merge with SET)
+[DONE] clean price, have 
+[DONE] Write price loading script (merge with SET) -> in notebook, change to yahoo
+[DONE] add Yahoo price loader script in notebook
 - Add sanity check script on price data (very prone to bug now)
 
 Trade
-- Test basic signal (MA100)
+[IN PROGRESS] Test basic signal (MACD, RSI), 
+[IN PROGRESS] test low beta signal 
+[IN PROGRESS] Test ratio predictive 
 - Write basic simulation function/class
 - Write job that load price, run through all signals, get score, save the file -> Called DAILY SCRIPT
 - Design trading freq, time 
 
 Analysis
-- Design position updating 
-- WRite position file (read position + past trade = current position)
-- Write analyze trade file
-
+[IN PROGRESS] WRite position file (read position + past trade = current position)
+- Write analyze position file
+- Write balance sheet health check (load from Morningstar)
 
 Set up job
 - Set up daily report + alert system
 - Set/Run monthly job for financial
 - Set/Run daily pricing job
+
+Class to write
+- FinancialData
+- PriceData
+- Portfolio
+- Simulation
